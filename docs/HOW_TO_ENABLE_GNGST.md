@@ -29,7 +29,7 @@ sudo ./shell.py   # needs root to directly access usb device
 The GNSS module has 3 layers in general.
 
 1. The Antenna      - The large ceramic patch antenna (possibly).
-2. SkyTraQ GNSS MCU - processes the GNSS signals, produces NMEA sentences
+2. SkyTraQ GNSS MCU - processes the GNSS signals, produces NMEA sentences, communicates via UART.
 3. CH340C UART-USB  - Takes NMEA from the MCU and exposes a USB interface for a PC
 
 The SkyTraQ MCU has its own protocol, which is listed in [Application-Note-AN0037.pdf](Application-Note-AN0037.pdf).
@@ -144,7 +144,7 @@ $GNGST,000003.000,,,,,,,*54
 
 ### Important Bits from The Log Above
 
-- Anything starting with `[INFO]` is from our program. Anything starting with a `$` is from the module. Any `>` prompt
+- Anything starting with `[INFO]` or `[ERROR]` is from our program. Anything starting with a `$` is from the module. Any `>` prompt
   is to give a command to our program.
 - First we run `open` after running `sudo ./shell.py`. This gives a `[pid]:[vid]>` prompt.
 - Then we run `read`. Press Ctrl+C to stop reading and return to the `[pid]:[vid]>` prompt.
