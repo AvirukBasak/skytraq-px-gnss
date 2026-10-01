@@ -148,7 +148,7 @@ $GNGST,000003.000,,,,,,,*54
   is to give a command to our program.
 - First we run `open` after running `sudo ./shell.py`. This gives a `[pid]:[vid]>` prompt.
 - Then we run `read`. Press Ctrl+C to stop reading and return to the `[pid]:[vid]>` prompt.
-- Next we write a command using `write 64_02_01_01_03_01_01_01_01_00_00_00_00_01_01 hex sktrq-px`.
+- Next we write a command using `write 64_02_01_01_03_01_01_01_01_00_00_00_00_01_00 hex sktrq-px`.
 - This sends raw bytes `64 02 01 ...` to the SkyTraQ chip. The command details are described in
   [HOW_TO_ENABLE_GNGST.pdf](HOW_TO_ENABLE_GNGST.pdf).
 - The `write`, `hex` and `sktrq-px` are keywords for the program itself, not the chip. `hex` means raw bytes passed as
