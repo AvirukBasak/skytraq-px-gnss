@@ -24,9 +24,9 @@ pip install pyusb # the only dependency
 sudo ./shell.py   # needs root to directly access usb device
 ```
 
-## GNSS Module Overview
+## PX11255-01A Module Overview
 
-The GNSS module has 3 layers in general.
+The PX11255-01A module has 3 layers in general.
 
 1. The Antenna      - The large ceramic patch antenna (possibly).
 2. SkyTraQ GNSS MCU - processes the GNSS signals, produces NMEA sentences, communicates via UART.
