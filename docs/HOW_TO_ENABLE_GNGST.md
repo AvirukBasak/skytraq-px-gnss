@@ -7,7 +7,7 @@ circle within which 50% of fixes land. The error is the circle's radius. A large
 ## How to enable?
 
 Included in this repo is [HOW_TO_ENABLE_GNGST.pdf](HOW_TO_ENABLE_GNGST.pdf) which is a page from the
-[Application-Note-AN0037.pdf](Application-Note-AN0037.pdf) which describes the binary command to send. Expect an `ACK`
+[Application-Note-AN0037.pdf](Application-Note-AN0037.pdf) which describes the binary command to send to the PX1125S-01A MCU on the GNSS module. Expect an `ACK`
 to confirm command success. See the logs further below on how it was sent. Continue reading for information on program
 setup and quirks of root access.
 
@@ -24,13 +24,13 @@ pip install pyusb # the only dependency
 sudo ./shell.py   # needs root to directly access usb device
 ```
 
-## PX1125S-01A Module Overview
+## Module Overview
 
-The PX1125S-01A module has 3 layers in general.
+The GNSA receiver module has 3 layers in general.
 
-1. The Antenna      - The large ceramic patch antenna (possibly).
-2. SkyTraQ GNSS MCU - processes the GNSS signals, produces NMEA sentences, communicates via UART.
-3. CH340C UART-USB  - Takes NMEA from the MCU and exposes a USB interface for a PC
+1. The Antenna - The large ceramic patch antenna (possibly).
+2. SkyTraQ PX1125S-01A MCU - processes the GNSS signals, produces NMEA sentences, communicates via UART.
+3. CH340C UART-USB - Takes NMEA from the MCU and exposes a USB interface for a PC
 
 The SkyTraQ MCU has its own protocol, which is listed in [Application-Note-AN0037.pdf](Application-Note-AN0037.pdf).
 One can send these commands over USB (or direct UART if using a companion ESP32/MCU). If done over USB, these go via
