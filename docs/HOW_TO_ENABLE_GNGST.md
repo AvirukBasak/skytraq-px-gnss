@@ -105,7 +105,7 @@ $GNZDA,000126.000,06,01,1980,00,00*4A
 ^C
 [INFO] shell.py: Interrupted
 
-1a86:7523> write 64_02_01_01_03_01_01_01_01_00_00_00_00_01_00 hex sktrq-px
+1a86:7523> write 64_02_01_01_03_01_01_01_01_00_00_00_00_01_00 hex phoenix
 [INFO] shell.py: Streaming - press Ctrl-C to exit
 0000.00000,E,0,00,0.0,0.0,M,0.0,M,,0000*69
 $GPGSA,A,1,,,,,,,,,,���d�
@@ -142,21 +142,27 @@ $GNGST,000003.000,,,,,,,*54
 >> ^C
 ```
 
+### Reading the Output
+
+- Anything starting with `[INFO]` or `[ERROR]` is from the program. Any `>` prompt is to give a command to the program.
+- First run `open` after launching `sudo ./shell.py`. This gives a `[vid]:[pid]>` prompt.
+- Run `read`. Press Ctrl+C to stop reading and return to the `[vid]:[pid]>` prompt.
+- On `write`, a read loop starts automatically. ACK / NACK / failure information will show up after you press Ctrl+C.
+- ACKs are dependent on the UART device and are implemented by user defined driver (see [ch341-reader/drivers](https://github.com/AvirukBasak/ch341-reader/tree/main/drivers)).
+
 ### Important Bits from The Log Above
 
-- Anything starting with `[INFO]` or `[ERROR]` is from our program. Anything starting with a `$` is from the module. Any `>` prompt
-  is to give a command to our program.
-- First we run `open` after running `sudo ./shell.py`. This gives a `[pid]:[vid]>` prompt.
-- Then we run `read`. Press Ctrl+C to stop reading and return to the `[pid]:[vid]>` prompt.
-- Next we write a command using `write 64_02_01_01_03_01_01_01_01_00_00_00_00_01_00 hex sktrq-px`.
+- Next we write a command using `write 64_02_01_01_03_01_01_01_01_00_00_00_00_01_00 hex phoenix`.
 - This sends raw bytes `64 02 01 ...` to the SkyTraQ chip. The command details are described in
   [HOW_TO_ENABLE_GNGST.pdf](HOW_TO_ENABLE_GNGST.pdf).
-- The `write`, `hex` and `sktrq-px` are keywords for the program itself, not the chip. `hex` means raw bytes passed as
+- The `write`, `hex` and `phoenix` are args for the program itself, not the chip. `hex` means raw bytes passed as
   hex (the other option `txt` is not relevant to our purpose).
-- The `sktrq-px` tells the `write` to enclose the payload in the start bytes, end bytes, add checksum and add message
+- The `phoenix` tells the `write` to enclose the payload in the start bytes, end bytes, add checksum and add message
   length fields. So, `64 02 01 ...` is the command and `write` turns it into the actual payload.
 - Note that on write, we automatically start a read loop. ACK / NACK / failure information will show up after you press
   Ctrl+C when read loop is running.
+- Behaviour of `write ... phoneix` is determined userdefined driver modules.
+  See [ch341-reader/drivers](https://github.com/AvirukBasak/ch341-reader/tree/main/drivers).
 
 ### Observe
 On initial read, there is no `$GNGST`. After the `write` it appears. There is a FLASH on the SkyTraQ chip which can
