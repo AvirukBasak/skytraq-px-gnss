@@ -6,8 +6,8 @@ circle within which 50% of fixes land. The error is the circle's radius. A large
 
 ## How to enable?
 
-Included in this repo is [HOW_TO_ENABLE_GNGST.pdf](HOW_TO_ENABLE_GNGST.pdf) which is a page from the
-[Application-Note-AN0037.pdf](Application-Note-AN0037.pdf) which describes the binary command to send to the PX1125S-01A MCU on the GNSS module. Expect an `ACK`
+Included in this repo is [How to Enable GST Sentences](phoenix/How%20to%20Enable%20GST%20Sentences.pdf) which is a page from the
+[AN0037 - Binary Messages of SkyTraQ Phoenix GNSS Receiver](phoenix/AN0037%20-%20Binary%20Messages%20of%20SkyTraQ%20Phoenix%20GNSS%20Receiver.pdf) which describes the binary command to send to the PX1125S-01A MCU on the GNSS module. Expect an `ACK`
 to confirm command success. See the logs further below on how it was sent. Continue reading for information on program
 setup and quirks of root access.
 
@@ -32,7 +32,7 @@ The GNSA receiver module has 3 layers in general.
 2. SkyTraQ PX1125S-01A MCU - processes the GNSS signals, produces NMEA sentences, communicates via UART.
 3. CH340C UART-USB - Takes NMEA from the MCU and exposes a USB interface for a PC
 
-The SkyTraQ MCU has its own protocol, which is listed in [Application-Note-AN0037.pdf](Application-Note-AN0037.pdf).
+The SkyTraQ MCU has its own protocol, which is listed in [AN0037 - Binary Messages of SkyTraQ Phoenix GNSS Receiver](phoenix/AN0037%20-%20Binary%20Messages%20of%20SkyTraQ%20Phoenix%20GNSS%20Receiver.pdf).
 One can send these commands over USB (or direct UART if using a companion ESP32/MCU). If done over USB, these go via
 the CH340C chip. A laptop or Android phone doesn't talk UART. So, the CH340C chip provides a bridge. It also has a
 config protocol (which is irrelevant for end usecases).
@@ -154,7 +154,7 @@ $GNGST,000003.000,,,,,,,*54
 
 - Next we write a command using `write 64_02_01_01_03_01_01_01_01_00_00_00_00_01_00 hex phoenix`.
 - This sends raw bytes `64 02 01 ...` to the SkyTraQ chip. The command details are described in
-  [HOW_TO_ENABLE_GNGST.pdf](HOW_TO_ENABLE_GNGST.pdf).
+  [How to Enable GST Sentences](phoenix/How%20to%20Enable%20GST%20Sentences.pdf).
 - The `write`, `hex` and `phoenix` are args for the program itself, not the chip. `hex` means raw bytes passed as
   hex (the other option `txt` is not relevant to our purpose).
 - The `phoenix` tells the `write` to enclose the payload in the start bytes, end bytes, add checksum and add message
@@ -170,4 +170,3 @@ store configs persistently across power downs. In the demo, we did not write the
 
 Also observe the line `[INFO] shell.py: ACK payload: 64 02`. Our command started with `64 02`. The ACK contains the
 same, indicating a success.
-
