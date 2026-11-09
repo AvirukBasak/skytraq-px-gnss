@@ -1,6 +1,6 @@
 # SkyTraQ PX1125S-01A
 
-See [CH341 Reader - Interactive Shell]([https://github.com/AvirukBasak/ch341-reader/blob/main/README.md](https://github.com/AvirukBasak/ch341-reader/blob/main/README.md#interactive-shell))
+See [CH341 Reader - Interactive Shell](https://github.com/AvirukBasak/ch341-reader/blob/main/README.md#interactive-shell)
 on how to configure a UART device connected over CH340C.
 
 Next, see [SkyTraQ PX1125S-01A GNSS Receiver](https://github.com/AvirukBasak/ch341-reader/blob/main/docs/drivers/PX1125S-01A.md#driver-for-the-skytraq-px1125s-01a-gnss-receiver)
