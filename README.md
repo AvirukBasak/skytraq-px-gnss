@@ -9,5 +9,5 @@ on what commands can be sent to configure:
 - Sentences reported by the PX1125S-01 device
 
 ## Old Docs
-See [How to Configure PX1125S-01](docs/How%20to%20Enable%20GST%20Sentences.md) for details on how to configure the
-GNSS module by sending the chip commands.
+See [How to Enable GST Sentences](docs/How%20to%20Enable%20GST%20Sentences.md) for details on how to enable the
+`$SNGST` sentences only.
