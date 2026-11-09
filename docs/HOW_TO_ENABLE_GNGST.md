@@ -1,15 +1,28 @@
-# Enable `$GNGST` Sentences
+# New Docs
 
-Why this sentence is useful? It reports error statistics directly from the GNSS receiver, so we don't have to compute
-position errors by ourselves. Position error is generally CEP, measured in meters. Larger values are worse. It is a
-circle within which 50% of fixes land. The error is the circle's radius. A larger circle is worse.
+See [CH341 Reader - Interactive Shell](https://github.com/AvirukBasak/ch341-reader/blob/main/README.md#interactive-shell)
+on how to configure a UART device connected over CH340C.
+
+Next, see [SkyTraQ PX1125S-01A GNSS Receiver](https://github.com/AvirukBasak/ch341-reader/blob/main/docs/drivers/PX1125S-01A.md#driver-for-the-skytraq-px1125s-01a-gnss-receiver)
+on what commands can be sent to configure:
+- Constellations used for position extimate
+- Sentences reported by the PX1125S-01 device
+
+# Old Documentation
+
+## How to Enable `$GNGST` Sentences
+
+Why this sentence is useful? It reports position statistics directly from the GNSS receiver, so we don't have to compute
+position statistics by ourselves.
+
+This sentence mainly reports standard deviation of latitude, longitude and altitude.
 
 ## How to enable?
 
 Included in this repo is [How to Enable GST Sentences](phoenix/How%20to%20Enable%20GST%20Sentences.pdf) which is a page from the
-[AN0037 - Binary Messages of SkyTraQ Phoenix GNSS Receiver](phoenix/AN0037%20-%20Binary%20Messages%20of%20SkyTraQ%20Phoenix%20GNSS%20Receiver.pdf) which describes the binary command to send to the PX1125S-01A MCU on the GNSS module. Expect an `ACK`
-to confirm command success. See the logs further below on how it was sent. Continue reading for information on program
-setup and quirks of root access.
+[AN0037 - Binary Messages of SkyTraQ Phoenix GNSS Receiver](https://www.skytraq.com.tw/homesite/AN0037.pdf) which describes the binary command to send to the PX1125S-01A MCU on the GNSS module.
+Expect an `ACK` to confirm command success. See the logs further below on how it was sent.
+Continue reading for information on program setup and quirks of root access.
 
 ## How to send this command?
 
@@ -32,7 +45,7 @@ The GNSA receiver module has 3 layers in general.
 2. SkyTraQ PX1125S-01A MCU - processes the GNSS signals, produces NMEA sentences, communicates via UART.
 3. CH340C UART-USB - Takes NMEA from the MCU and exposes a USB interface for a PC
 
-The SkyTraQ MCU has its own protocol, which is listed in [AN0037 - Binary Messages of SkyTraQ Phoenix GNSS Receiver](phoenix/AN0037%20-%20Binary%20Messages%20of%20SkyTraQ%20Phoenix%20GNSS%20Receiver.pdf).
+The SkyTraQ MCU has its own protocol, which is listed in [AN0037 - Binary Messages of SkyTraQ Phoenix GNSS Receiver](https://www.skytraq.com.tw/homesite/AN0037.pdf).
 One can send these commands over USB (or direct UART if using a companion ESP32/MCU). If done over USB, these go via
 the CH340C chip. A laptop or Android phone doesn't talk UART. So, the CH340C chip provides a bridge. It also has a
 config protocol (which is irrelevant for end usecases).
