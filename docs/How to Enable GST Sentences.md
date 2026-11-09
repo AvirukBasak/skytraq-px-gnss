@@ -3,18 +3,27 @@
 The present version of the [CH341 Reader - Interactive Shell](https://github.com/AvirukBasak/ch341-reader/blob/main/README.md#interactive-shell)
 allows a direct `write` command via `sudo ./shell.py` to enable `$GNGST` sentences:
 
-1. First, launch the shell:
+1. First, install dependencies and launch the shell:
    ```shell
    pip install pyusb # the only dependency
    sudo ./shell.py   # interactive shell
    ```
+
 3. Next, open a device:
    ```shell
    open
    ```
+
 4. Next, send the following write command:
    ```shell
    write $Set-Msg-Intervals:GGA=1,GSA=1,GSV=1,GLL=1,RMC=1,VTG=1,ZDA=1,GNS=0,GBS=0,GSR=0,DTM=0,GST=1,W=1 txt phoenix
+   ```
+
+5. Press Ctrl+C to see the ACK or NACK (if rejected):
+   ```
+   ^C
+   [INFO] shell.py: Interrupted
+   [INFO] PX1125S01A.py: ACK (83): 83 64 02
    ```
 
 See [SkyTraQ PX1125S-01A GNSS Receiver](https://github.com/AvirukBasak/ch341-reader/blob/main/docs/drivers/PX1125S-01A.md#driver-for-the-skytraq-px1125s-01a-gnss-receiver)
