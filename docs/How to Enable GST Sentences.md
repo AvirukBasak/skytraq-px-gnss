@@ -1,9 +1,23 @@
 # New Docs
 
-See [CH341 Reader - Interactive Shell](https://github.com/AvirukBasak/ch341-reader/blob/main/README.md#interactive-shell)
-on how to configure a UART device connected over CH340C.
+The present version of the [CH341 Reader - Interactive Shell](https://github.com/AvirukBasak/ch341-reader/blob/main/README.md#interactive-shell)
+allows a direct `write` command via `sudo ./shell.py` to enable `$GNGST` sentences:
 
-Next, see [SkyTraQ PX1125S-01A GNSS Receiver](https://github.com/AvirukBasak/ch341-reader/blob/main/docs/drivers/PX1125S-01A.md#driver-for-the-skytraq-px1125s-01a-gnss-receiver)
+1. First, launch the shell:
+   ```shell
+   pip install pyusb # the only dependency
+   sudo ./shell.py   # interactive shell
+   ```
+3. Next, open a device:
+   ```shell
+   open
+   ```
+4. Next, send the following write command:
+   ```shell
+   write $Set-Msg-Intervals:GGA=1,GSA=1,GSV=1,GLL=1,RMC=1,VTG=1,ZDA=1,GNS=0,GBS=0,GSR=0,DTM=0,GST=1,W=1 txt phoenix
+   ```
+
+See [SkyTraQ PX1125S-01A GNSS Receiver](https://github.com/AvirukBasak/ch341-reader/blob/main/docs/drivers/PX1125S-01A.md#driver-for-the-skytraq-px1125s-01a-gnss-receiver)
 on what commands can be sent to configure:
 - Constellations used for position extimate
 - Sentences reported by the PX1125S-01 device
