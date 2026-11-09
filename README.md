@@ -10,4 +10,4 @@ on what commands can be sent to configure:
 
 ## Old Docs
 See [How to Enable GST Sentences](docs/How%20to%20Enable%20GST%20Sentences.md) for details on how to enable the
-`$SNGST` sentences only.
+`$GNGST` sentences only.
